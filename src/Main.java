@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -7,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Main extends StateBasedGame {
 
 	private static String GAME_NAME = "Swift Shadows";
+	
 	
 
 	private static BasicGameState playingState = new PlayingState();
@@ -18,7 +21,8 @@ public class Main extends StateBasedGame {
 		enterState(playingState.getID());
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		
 		AppGameContainer agc;
 
 		try {
