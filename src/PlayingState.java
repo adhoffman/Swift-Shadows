@@ -1,48 +1,43 @@
-import java.awt.Rectangle;
-
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class PlayingState extends BasicGameState {
 
-	private Rectangle playerRec;
-	private Player player;
-	
+	private TiledMap tiledMap;
+	private MapScrollerController mapScrollerController;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		playerRec = new Rectangle(100, 100, 50, 50);
-		player=new Player(playerRec);
-
+		tiledMap = new TiledMap("maps/testMap.tmx");
+		mapScrollerController = new MapScrollerController(tiledMap);
 
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gr)
 			throws SlickException {
-		gr.setColor(Color.white);
-		gr.drawString("Hello World!", 250, 250);
+
+		mapScrollerController.render();
 
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		player.update(gc.getInput(), delta);
-		
-		
-		
+		Input input = gc.getInput();
+
+		mapScrollerController.update(input);
 
 	}
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
