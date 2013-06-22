@@ -25,8 +25,8 @@ public class PlayingState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gr)
 			throws SlickException {
-		gr.setColor(Color.black);
-		gr.drawRect((float)playerRec.getX(), (float)playerRec.getY(), (float)playerRec.getWidth(),(float) playerRec.getHeight());
+		gr.setColor(Color.white);
+		gr.drawString("Hello World!", 250, 250);
 
 	}
 

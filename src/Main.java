@@ -7,8 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Main extends StateBasedGame {
 
 	private static String GAME_NAME = "Swift Shadows";
-	private static final int SCREEN_HEIGHT = 720;
-	private static final int SCREEN_WIDTH = 960;
+	
 
 	private static BasicGameState playingState = new PlayingState();
 
@@ -24,7 +23,7 @@ public class Main extends StateBasedGame {
 
 		try {
 			agc = new AppGameContainer(new Main(GAME_NAME));
-			agc.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+			agc.setDisplayMode(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT, false);
 			agc.setShowFPS(true);
 			agc.setTargetFrameRate(60);
 			agc.setVSync(true);
