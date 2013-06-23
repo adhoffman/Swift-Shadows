@@ -1,29 +1,25 @@
+package adhoffman.swiftshadows;
+
 import java.awt.Rectangle;
 
 import org.newdawn.slick.tiled.TiledMap;
-
 
 public class PlayerMapCollisionChecker {
 
 	private Rectangle playerRec;
 	private TiledMap tiledMap;
 
-
 	private boolean[][] blocked;
-	
-	
-	public PlayerMapCollisionChecker(TiledMap tiledMap,StartingPoint startingPoint){
-		this.tiledMap=tiledMap;
-	
-			
+
+	public PlayerMapCollisionChecker(TiledMap tiledMap, StartingPoint startingPoint) {
+		this.tiledMap = tiledMap;
+
 		playerRec = new Rectangle();
 		playerRec.setBounds(startingPoint.getX(), startingPoint.getY(), Constant.PLAYER_REC_WIDTH, Constant.PLAYER_REC_HEIGHT);
-		
 
 		fillBoolMap();
 	}
-	
-	
+
 	private void fillBoolMap() {
 		blocked = new boolean[tiledMap.getWidth()][tiledMap.getHeight()];
 
@@ -31,31 +27,27 @@ public class PlayerMapCollisionChecker {
 			for (int yAxis = 0; yAxis < tiledMap.getHeight(); yAxis++) {
 
 				int tileID = tiledMap.getTileId(xAxis, yAxis, 0);
-				String value = tiledMap.getTileProperty(tileID, "blocked",
-						"false");
-				
+				String value = tiledMap.getTileProperty(tileID, "blocked", "false");
 
 				if ("true".equals(value)) {
 					blocked[xAxis][yAxis] = true;
 				}
 
 			}
-		
+
 		}
 
 	}
-	
-	public boolean isNotBlockedInAnyDirection(float x, float y){
-		if(!isBlockedRight(x, y) && !isBlockedLeft(x, y) && !isBlockedDown(x, y) && !isBlockedUp(x, y))
+
+	public boolean isNotBlockedInAnyDirection(float x, float y) {
+		if (!isBlockedRight(x, y) && !isBlockedLeft(x, y) && !isBlockedDown(x, y) && !isBlockedUp(x, y))
 			return true;
 		else
 			return false;
 	}
-	
+
 	public boolean isBlockedRight(float x, float y) {
-		if (checkTopRightCorner(x, y) || checkBottomRightCorner(x, y)
-				|| checkMidpointOneRight(x, y) || checkMidpointTwoRight(x, y)
-				|| checkMidpointThreeRight(x, y))
+		if (checkTopRightCorner(x, y) || checkBottomRightCorner(x, y) || checkMidpointOneRight(x, y) || checkMidpointTwoRight(x, y) || checkMidpointThreeRight(x, y))
 			return true;
 		else
 			return false;
@@ -63,9 +55,7 @@ public class PlayerMapCollisionChecker {
 	}
 
 	public boolean isBlockedLeft(float x, float y) {
-		if (checkTopLeftCorner(x, y) || checkBottomLefttCorner(x, y)
-				|| checkMidpointOneLeft(x, y) || checkMidpointTwoLeft(x, y)
-				|| checkMidpointThreeLeft(x, y))
+		if (checkTopLeftCorner(x, y) || checkBottomLefttCorner(x, y) || checkMidpointOneLeft(x, y) || checkMidpointTwoLeft(x, y) || checkMidpointThreeLeft(x, y))
 			return true;
 		else
 			return false;
@@ -73,8 +63,7 @@ public class PlayerMapCollisionChecker {
 	}
 
 	public boolean isBlockedDown(float x, float y) {
-		if (checkMidpointOneBot(x, y) || checkMidpointTwoBot(x, y)
-				|| checkMidpointThreeBot(x, y))
+		if (checkMidpointOneBot(x, y) || checkMidpointTwoBot(x, y) || checkMidpointThreeBot(x, y))
 			return true;
 		else
 			return false;
@@ -82,8 +71,7 @@ public class PlayerMapCollisionChecker {
 	}
 
 	public boolean isBlockedUp(float x, float y) {
-		if (checkMidpointOneTop(x, y) || checkMidpointTwoTop(x, y)
-				|| checkMidpointThreeTop(x, y))
+		if (checkMidpointOneTop(x, y) || checkMidpointTwoTop(x, y) || checkMidpointThreeTop(x, y))
 			return true;
 		else
 			return false;
@@ -98,7 +86,7 @@ public class PlayerMapCollisionChecker {
 
 	private boolean checkMidpointTwoTop(float x, float y) {
 		int xBlock = (int) (x += 16) / Constant.BLOCK_SIZE;
-		int yBlock = (int) (y -= Constant.SCREEN_SCROLL_DISTANCE) /Constant.BLOCK_SIZE;
+		int yBlock = (int) (y -= Constant.SCREEN_SCROLL_DISTANCE) / Constant.BLOCK_SIZE;
 		return blocked[xBlock][yBlock];
 	}
 
@@ -109,45 +97,35 @@ public class PlayerMapCollisionChecker {
 	}
 
 	private boolean checkMidpointTwoRight(float x, float y) {
-		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getWidth())
-				/ Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getWidth()) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y += 36) / Constant.BLOCK_SIZE;
 
 		return (blocked[xBlock][yBlock]);
 	}
 
 	private boolean checkMidpointThreeRight(float x, float y) {
-		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getWidth())
-				/ Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getWidth()) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y += 24) / Constant.BLOCK_SIZE;
 
 		return (blocked[xBlock][yBlock]);
 	}
 
 	private boolean checkMidpointOneRight(float x, float y) {
-		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getWidth())
-				/ Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getWidth()) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y += 12) / Constant.BLOCK_SIZE;
 
 		return (blocked[xBlock][yBlock]);
 	}
 
 	private boolean checkBottomRightCorner(float x, float y) {
-		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getWidth())
-				/ Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getWidth()) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y += playerRec.getHeight()) / Constant.BLOCK_SIZE;
 
 		return (blocked[xBlock][yBlock]);
 	}
 
 	private boolean checkTopRightCorner(float x, float y) {
-		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getWidth())
-				/ Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getWidth()) / Constant.BLOCK_SIZE;
 		int yBlock = (int) y / Constant.BLOCK_SIZE;
 
 		return (blocked[xBlock][yBlock]);
@@ -185,26 +163,20 @@ public class PlayerMapCollisionChecker {
 
 	private boolean checkMidpointThreeBot(float x, float y) {
 		int xBlock = (int) (x += 24) / Constant.BLOCK_SIZE;
-		int yBlock = (int) (y += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getHeight())
-				/ Constant.BLOCK_SIZE;
+		int yBlock = (int) (y += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getHeight()) / Constant.BLOCK_SIZE;
 		return blocked[xBlock][yBlock];
 	}
 
 	private boolean checkMidpointTwoBot(float x, float y) {
 		int xBlock = (int) (x += 16) / Constant.BLOCK_SIZE;
-		int yBlock = (int) (y += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getHeight())
-				/ Constant.BLOCK_SIZE;
+		int yBlock = (int) (y += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getHeight()) / Constant.BLOCK_SIZE;
 		return blocked[xBlock][yBlock];
 	}
 
 	private boolean checkMidpointOneBot(float x, float y) {
 		int xBlock = (int) (x += 8) / Constant.BLOCK_SIZE;
-		int yBlock = (int) (y += Constant.SCREEN_SCROLL_DISTANCE
-				+ playerRec.getHeight())
-				/ Constant.BLOCK_SIZE;
+		int yBlock = (int) (y += Constant.SCREEN_SCROLL_DISTANCE + playerRec.getHeight()) / Constant.BLOCK_SIZE;
 		return blocked[xBlock][yBlock];
 	}
-	
+
 }

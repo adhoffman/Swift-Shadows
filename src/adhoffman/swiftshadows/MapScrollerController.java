@@ -1,3 +1,5 @@
+package adhoffman.swiftshadows;
+
 import org.newdawn.slick.Input;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -46,7 +48,6 @@ public class MapScrollerController {
 	}
 
 	public void render() {
-
 		tiledMap.render(x, y, 0, 0, tiledMap.getWidth(), tiledMap.getHeight());
 	}
 
