@@ -10,6 +10,7 @@ public class PlayingState extends BasicGameState {
 
 	
 	private Player player;
+	private StartingPoint startingPoint;
 	private TiledMap tiledMap;
 	private MapScrollerController mapScrollerController;
 
@@ -23,10 +24,10 @@ public class PlayingState extends BasicGameState {
 		tiledMap = new TiledMap("maps/testMap.tmx");
 		
 		mapScrollerController = new MapScrollerController(tiledMap);
+		startingPoint=new StartingPoint(50,50);
 		
 		
-		
-		player=new Player(tiledMap);
+		player=new Player(tiledMap,startingPoint);
 
 	}
 
@@ -47,8 +48,8 @@ public class PlayingState extends BasicGameState {
 		Input input = gc.getInput();
 		
 		
-		player.update(input);
-		// mapScrollerController.update(input);
+		player.update(input,delta);
+		//mapScrollerController.update(input);
 
 		
 
