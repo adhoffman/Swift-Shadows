@@ -1,5 +1,6 @@
 package adhoffman.swiftshadows;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -30,6 +31,9 @@ public class PlayingState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		mapScrollerController.render();
 		player.render();
+
+		g.setColor(Color.white);
+		g.drawString("FPS: " + gc.getFPS(), 10, 10);
 	}
 
 	@Override
