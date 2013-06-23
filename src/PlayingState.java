@@ -8,22 +8,36 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class PlayingState extends BasicGameState {
 
+	
+	private Player player;
 	private TiledMap tiledMap;
 	private MapScrollerController mapScrollerController;
+
+
+	
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		
 		tiledMap = new TiledMap("maps/testMap.tmx");
+		
 		mapScrollerController = new MapScrollerController(tiledMap);
+		
+		
+		
+		player=new Player(tiledMap);
 
 	}
+
+	
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gr)
 			throws SlickException {
 
 		mapScrollerController.render();
+		player.render();
 
 	}
 
@@ -31,8 +45,12 @@ public class PlayingState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		Input input = gc.getInput();
+		
+		
+		player.update(input);
+		// mapScrollerController.update(input);
 
-		mapScrollerController.update(input);
+		
 
 	}
 

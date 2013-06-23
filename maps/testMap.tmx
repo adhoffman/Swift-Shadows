@@ -3,7 +3,20 @@
  <tileset firstgid="1" name="testTileSEt" tilewidth="16" tileheight="16">
   <image source="../res/testTileSEt.png" width="64" height="32"/>
  </tileset>
- <layer name="Tile Layer 1" width="100" height="100">
+ <tileset firstgid="9" name="collisionTile" tilewidth="16" tileheight="16">
+  <image source="../res/collisionTile.png" width="64" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Blocked" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2cENg0AQBEG+zj9hB+CHz3AsbalKmgRo8WB5HcfxstRo0KNFjxY9WvRo0aNFjxY9WvS43y/PWI/7nPne1mOvq3cPPfbYdXvS45rdN0A9zrvj2T19V/737eb9aNGjRY8WPVr0aNGjRY8WPVr0aNGjZaWHXnP0aNGjRY8WPVr0aFntYbOjQY8WPVr0aNGjRY8WPVr0aNFj1uq3NzP0aNGjRY8Wt9veVnrQoEeLHi16tOjRokeLHi16tOjRokfLmR763UePFj1a9GjRo+VsD3vuHwlz9GjRo0WPFj1a9GjRo0WPFj1a9Jj17VnrMUuPFj1a9GhZ7WGNW7r3o0WPFj1a9GjRo+VbD61m6dGiR4seLXq06NGy0sNaNy7m6NGiR4seLXq06NGiR4seLXq0PP0dap97A6cgIhs=
+  </data>
+ </layer>
+ <layer name="Visual Layer" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJzt281uwkAMAOHw8/7P3EsrRVUgy5LEY3sOc4GCtv5YiWzEY1mWh6G6GaIIj+dv0f87saj9oQnLY22iC8Pjv0v0LAgRPDQ5x+N5QNHziI6yP/48o9cQHcWj8v74ZMYEj6oWM9fbft89z2Bmrl4PHu9wxPtoEesQ6VGlM2YXfa6cvQzGpkeV9GBF9qjyHayCR0cLokfFa/asHp0dyB6d758QPaJeT4jkUWmuZ3p4/qtHVxOyR0cTusfaJXoNevRLD1ajHnZt0Z8LG98fpkfX9GClB6tMHh2uCbN5VDehelS/75TN451T9Bq+nbcenKp5ZE8PVnqw8uyWl/sjT3qw0oOVHqzIHtXPRjJ5dLQgenQ4M8zq0fE3BzSPtUn0OvTYdulkM+NxtZ8eLI9O6cFKD1Z6sJr1sLh7JMbeH6ZHl/RgpQerLB5dzrGyeHQxyeTRwYTo0eG+UyaPPaPotXw77yoe0WvQo156sNKD1aiHMc7S3R+s9GClBys9WOnBas9DKz06pwcrPVjpwUoPViMexjrjsu3uE3+/lx5zs5yx0uNYjxEvPa7z2Nof943n9bjO5NVjr1z0iPVYz10Pdnqw0oPVJx7G6Qdv7TC4
   </data>
