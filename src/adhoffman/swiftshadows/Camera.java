@@ -28,6 +28,8 @@ public class Camera {
 		if (isLockedOnTarget()) {
 			if (isBounded) {
 				moveTo(Math.min(Math.max(targetPosition.x - Constant.SCREEN_WIDTH / 2f, bounds.getX()), bounds.getX() + bounds.getWidth()), Math.min(Math.max(targetPosition.y - Constant.SCREEN_HEIGHT / 2f, bounds.getY()), bounds.getY() + bounds.getHeight()));
+			} else {
+				moveTo(targetPosition.x - Constant.SCREEN_WIDTH / 2f, targetPosition.y - Constant.SCREEN_HEIGHT / 2f);
 			}
 			offsetTo(targetOffset.x, targetOffset.y);
 		}
