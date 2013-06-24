@@ -3,27 +3,28 @@ package adhoffman.swiftshadows;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Player {
 
-	private Image player;
+	public final Image image;
+	public final Vector2f position = new Vector2f();
 
-	private int xLocation;
-	private int yLocation;
 	private float verticalSpeed;
 	private float horizontalSpeed;
+
 	private boolean isJumping;
 
 	private PlayerMapCollisionChecker mapCollisionChecker;
 
-	public Player(TiledMap tiledMap, StartingPoint startingPoint) throws SlickException {
+	public Player(TiledMap tiledMap, Vector2f spawnPosition) throws SlickException {
 
-		mapCollisionChecker = new PlayerMapCollisionChecker(tiledMap, startingPoint);
-		player = new Image("res/sneak.png");
+		mapCollisionChecker = new PlayerMapCollisionChecker(tiledMap, spawnPosition);
+		image = new Image("res/sneak.png");
 
-		xLocation = startingPoint.getX();
-		yLocation = startingPoint.getY();
+		position.x = spawnPosition.x;
+		position.y = spawnPosition.y;
 
 		verticalSpeed = 0;
 		horizontalSpeed = 0;
@@ -32,12 +33,14 @@ public class Player {
 	}
 
 	public void render() {
-		player.draw(xLocation += horizontalSpeed, yLocation += verticalSpeed);
+		image.draw(position.x += horizontalSpeed, position.y += verticalSpeed);
 	}
 
 	public void update(Input input, int delta) {
+		position.x += horizontalSpeed;
+		position.y += verticalSpeed;
 
-		if (mapCollisionChecker.isNotBlockedInAnyDirection(xLocation += horizontalSpeed, yLocation += verticalSpeed))
+		if (mapCollisionChecker.isNotBlockedInAnyDirection(position.x, position.y))
 			isJumping = true;
 		else {
 			isJumping = false;
@@ -46,28 +49,28 @@ public class Player {
 		}
 
 		if (input.isKeyDown(Input.KEY_UP)) {
-			if (!mapCollisionChecker.isBlockedUp(xLocation, yLocation) && (isJumping == false))
+			if (!mapCollisionChecker.isBlockedUp(position.x, position.y) && (!isJumping))
 				verticalSpeed -= Constant.PLAYER_JUMP_THRUST;
 		}
 
 		if (input.isKeyDown(Input.KEY_DOWN)) {
-			if (!mapCollisionChecker.isBlockedDown(xLocation, yLocation))
+			if (!mapCollisionChecker.isBlockedDown(position.x, position.y))
 				verticalSpeed += Constant.SCREEN_SCROLL_DISTANCE;
 		}
 
 		if (input.isKeyDown(Input.KEY_LEFT)) {
-			if (!mapCollisionChecker.isBlockedLeft(xLocation, yLocation))
+			if (!mapCollisionChecker.isBlockedLeft(position.x, position.y))
 				if (horizontalSpeedIsNotTooFastToTheLeft())
 					horizontalSpeed -= Constant.PLAYER_SIDE_MOMENTUM;
 		}
 
 		if (input.isKeyDown(Input.KEY_RIGHT)) {
-			if (!mapCollisionChecker.isBlockedRight(xLocation, yLocation))
+			if (!mapCollisionChecker.isBlockedRight(position.x, position.y))
 				if (horizontalSpeedIsNotTooFastToTheRight())
 					horizontalSpeed += Constant.PLAYER_SIDE_MOMENTUM;
 		}
 
-		if (isJumping == true) {
+		if (isJumping) {
 			verticalSpeed += (Constant.GRAVITY * delta);
 		}
 
@@ -100,12 +103,12 @@ public class Player {
 			return false;
 	}
 
-	public int getX() {
-		return xLocation;
+	public float getX() {
+		return position.x;
 	}
 
-	public int getY() {
-		return yLocation;
+	public float getY() {
+		return position.y;
 	}
 
 }

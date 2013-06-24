@@ -1,7 +1,7 @@
 package adhoffman.swiftshadows;
 
-import java.awt.Rectangle;
-
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class PlayerMapCollisionChecker {
@@ -11,11 +11,10 @@ public class PlayerMapCollisionChecker {
 
 	private boolean[][] blocked;
 
-	public PlayerMapCollisionChecker(TiledMap tiledMap, StartingPoint startingPoint) {
+	public PlayerMapCollisionChecker(TiledMap tiledMap, Vector2f spawnPosition) {
 		this.tiledMap = tiledMap;
 
-		playerRec = new Rectangle();
-		playerRec.setBounds(startingPoint.getX(), startingPoint.getY(), Constant.PLAYER_REC_WIDTH, Constant.PLAYER_REC_HEIGHT);
+		playerRec = new Rectangle(spawnPosition.x, spawnPosition.y, Constant.PLAYER_REC_WIDTH, Constant.PLAYER_REC_HEIGHT);
 
 		fillBoolMap();
 	}

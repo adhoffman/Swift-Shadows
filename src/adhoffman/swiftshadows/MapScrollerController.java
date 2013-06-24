@@ -13,14 +13,12 @@ public class MapScrollerController {
 	private int pixelBlock;
 
 	public MapScrollerController(TiledMap tiledMap) {
-
 		this.tiledMap = tiledMap;
 		y = 0;
 		x = 0;
-		pixelBlock = 16;
+		pixelBlock = Constant.BLOCK_SIZE;
 		totalPixelWidth = tiledMap.getWidth() * pixelBlock;
 		totalPixelHeight = tiledMap.getHeight() * pixelBlock;
-
 	}
 
 	public void update(Input input) {
@@ -48,7 +46,6 @@ public class MapScrollerController {
 	}
 
 	public void render() {
-		tiledMap.render(x, y, 0, 0, tiledMap.getWidth(), tiledMap.getHeight());
 	}
 
 	private boolean canMoveRight() {
