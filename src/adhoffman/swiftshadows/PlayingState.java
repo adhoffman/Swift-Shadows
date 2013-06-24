@@ -14,14 +14,11 @@ public class PlayingState extends BasicGameState {
 
 	private Player player;
 	private TiledMap tiledMap;
-	private MapScrollerController mapScrollerController;
 	private Camera camera = new Camera(0, 0, 3);
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		tiledMap = new TiledMap("maps/testMap.tmx");
-
-		mapScrollerController = new MapScrollerController(tiledMap);
 
 		player = new Player(tiledMap, new Vector2f(50, 50));
 		camera.follow(player.position, new Vector2f(-player.image.getWidth() / 2, -player.image.getHeight() / 2f), true);
