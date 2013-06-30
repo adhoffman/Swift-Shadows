@@ -49,7 +49,7 @@ public class PlayingState extends BasicGameState {
 		
 		
 		player.update(input,delta);
-		//mapScrollerController.update(input);
+		//mapScrollerController.update(player.broadcastLocation());
 
 		
 

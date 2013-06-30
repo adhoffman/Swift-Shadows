@@ -90,6 +90,10 @@ public class PlayerMapCollisionChecker {
 
 	}
 
+	
+	//TODO
+	
+	//Remove SCREEN_SCROLL_DISTANCE from collision checker and replace it with deltaX, deltaY
 	private boolean checkMidpointThreeTop(float x, float y) {
 		int xBlock = (int) (x += 24) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y -= Constant.SCREEN_SCROLL_DISTANCE) / Constant.BLOCK_SIZE;
