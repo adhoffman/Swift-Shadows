@@ -42,8 +42,7 @@ public class Player {
 
 	public void update(Input input, int delta) {
 
-		if (mapCollisionChecker.isNotBlockedInAnyDirection(
-				xLocation += horizontalSpeed, yLocation += verticalSpeed))
+		if (mapCollisionChecker.isNotBlockedInAnyDirection(new Point(xLocation,yLocation), horizontalSpeed,verticalSpeed))
 			isJumping = true;
 		else {
 			isJumping = false;
@@ -58,7 +57,7 @@ public class Player {
 
 		if (ifDownKeyDown(input)) {
 			if (ifPlayerCanMoveDown())
-				verticalSpeed += Constant.SCREEN_SCROLL_DISTANCE;
+				verticalSpeed += Constant.PLAYER_FALL_THRUST;
 		}
 
 		if (ifLeftKeyDown(input)) {
@@ -97,7 +96,7 @@ public class Player {
 	}
 
 	private boolean ifPlayerCanMoveRight() {
-		if (!mapCollisionChecker.isBlockedRight(xLocation, yLocation))
+		if (!mapCollisionChecker.isBlockedRight(new Point(xLocation, yLocation),horizontalSpeed))
 			return true;
 		else
 			return false;
@@ -105,21 +104,21 @@ public class Player {
 	}
 
 	private boolean ifPlayerCanMoveLeft() {
-		if (!mapCollisionChecker.isBlockedLeft(xLocation, yLocation))
+		if (!mapCollisionChecker.isBlockedLeft(new Point(xLocation, yLocation),horizontalSpeed))
 			return true;
 		else
 			return false;
 	}
 
 	private boolean ifPlayerCanMoveDown() {
-		if (!mapCollisionChecker.isBlockedDown(xLocation, yLocation))
+		if (!mapCollisionChecker.isBlockedDown(new Point(xLocation, yLocation),verticalSpeed))
 			return true;
 		else
 			return false;
 	}
 
 	private boolean ifPlayerCanMoveUp() {
-		if (!mapCollisionChecker.isBlockedUp(xLocation, yLocation)
+		if (!mapCollisionChecker.isBlockedUp(new Point(xLocation, yLocation),verticalSpeed)
 				&& (isJumping == false))
 			return true;
 		else
