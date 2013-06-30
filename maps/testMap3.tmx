@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="testTileSEt" tilewidth="16" tileheight="16">
+  <image source="../res/testTileSEt.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="9" name="collisionTile" tilewidth="16" tileheight="16">
+  <image source="../res/collisionTile.png" width="64" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Blocked" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2cENg0AQBEG+zj9hB+CHz3AsbalKmgRo8WB5HcfxstRo0KNFjxY9WvRo0aNFjxY9WvS43y/PWI/7nPne1mOvq3cPPfbYdXvS45rdN0A9zrvj2T19V/737eb9aNGjRY8WPVr0aNGjRY8WPVr0aNGjZaWHXnP0aNGjRY8WPVr0aFntYbOjQY8WPVr0aNGjRY8WPVr0aNFj1uq3NzP0aNGjRY8Wt9veVnrQoEeLHi16tOjRokeLHi16tOjRokfLmR763UePFj1a9GjRo+VsD3vuHwlz9GjRo0WPFj1a9GjRo0WPFj1a9Jj17VnrMUuPFj1a9GhZ7WGNW7r3o0WPFj1a9GjRo+VbD61m6dGiR4seLXq06NGy0sNaNy7m6NGiR4seLXq06NGiR4seLXq0PP0dap97A6cgIhs=
+  </data>
+ </layer>
+ <layer name="Visual Layer" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt281ygzAMAGGa5P2fuZcemA4B4hi0kvawl/66+uoSzPS5LMvTUP0YogiP11/RPzuxPY/XTprc77E3yxnfe6ZvlSI9/rtEz4IQwUOTazz2rjdni55HdFHX80+cO+XfK9aMCR5VLUbut329e53ByH12lEdlhxlfZ29ms6/nlSxmnwF6nsiaXfS5cvYyGJseVdKDFdmjymuwCh4dLYgeFe/Zs3p0diB7dH5+QvSI+nxCJI9Kc73SI8KrqwnVo6sJ2aOjCd1j7RK9Bj36pQersx52b9G/F3Z+f5geXdODlR6sMnl0uCfM5lHdhOpR/blTNo89p+g1fDtvPThV88ieHqz0YOXZLS/3R570YKUHKz1YkT2qn41k8uhoQfTocGaY1aPj/xzQPNYm0evQY9ulk82Ix91+erA8OqUHKz1Y6cFq1MPinpEYe3+YHl3Sg5UerLJ4dDnHyuLRxSSTRwcTokeH506ZPI6Motfy7byreESvQY966cFKD1ZnPYxxlu7+YKUHKz1Y6cFKD1ZHHlrp0Tk9WOnBSg9WerA642GsMy7b7jHw8UfpMTbLESs95nqc8dLjPo+t/fHYeL8e95m8e9s7Fz1iPdZz14OdHqz0YPWJh3H6BT+wMQ8=
+  </data>
+ </layer>
+</map>
