@@ -9,7 +9,7 @@ public class Constant {
 	
 	public static final float PLAYER_JUMP_THRUST=3.0f;
 	public static final float PLAYER_SIDE_MOMENTUM=0.1f;
-	public static final float PLAYER_HORIZONTAL_TERMINAL_VELOCITY=0.05f;
+	public static final float PLAYER_HORIZONTAL_TERMINAL_VELOCITY=2.5f;
 	public static final float GRAVITY=0.005f;
 	
 	public static final int BLOCK_SIZE =16;

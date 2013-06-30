@@ -81,6 +81,20 @@ public class Player {
 		yLocation += verticalSpeed;
 
 	}
+	
+	private boolean horizontalSpeedIsNotTooFastToTheRight() {
+		if (horizontalSpeed<Constant.PLAYER_HORIZONTAL_TERMINAL_VELOCITY)
+			return true;
+		else
+			return false;
+	}
+
+	private boolean horizontalSpeedIsNotTooFastToTheLeft() {
+		if (horizontalSpeed>-Constant.PLAYER_HORIZONTAL_TERMINAL_VELOCITY)
+			return true;
+		else
+			return false;
+	}
 
 	private boolean ifPlayerCanMoveRight() {
 		if (!mapCollisionChecker.isBlockedRight(xLocation, yLocation))
@@ -153,18 +167,6 @@ public class Player {
 
 	}
 
-	private boolean horizontalSpeedIsNotTooFastToTheRight() {
-		if ((horizontalSpeed += Constant.PLAYER_SIDE_MOMENTUM) <= Constant.PLAYER_HORIZONTAL_TERMINAL_VELOCITY)
-			return true;
-		else
-			return false;
-	}
-
-	private boolean horizontalSpeedIsNotTooFastToTheLeft() {
-		if ((horizontalSpeed -= Constant.PLAYER_SIDE_MOMENTUM) >= -Constant.PLAYER_HORIZONTAL_TERMINAL_VELOCITY)
-			return true;
-		else
-			return false;
-	}
+	
 
 }
