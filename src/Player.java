@@ -42,14 +42,15 @@ public class Player {
 
 	public void update(Input input, int delta) {
 
-		if (mapCollisionChecker.isNotBlockedInAnyDirection(new Point(xLocation,yLocation), horizontalSpeed,verticalSpeed))
-			isJumping = true;
-		else {
-			isJumping = false;
-			verticalSpeed = 0;
-			calculateHorizontalFriction();
-		}
+		checkIfPlayerIsJumping();
+		checkInputFromKeyboard(input);
+		ifPlayerIsJumpingAddGravity(delta);
+		updateLocationWithCurrentVelocity();
+		
 
+	}
+	
+	private void checkInputFromKeyboard(Input input) {
 		if (ifUpKeyDown(input)) {
 			if (ifPlayerCanMoveUp())
 				verticalSpeed -= Constant.PLAYER_JUMP_THRUST;
@@ -71,16 +72,33 @@ public class Player {
 				if (horizontalSpeedIsNotTooFastToTheRight())
 					horizontalSpeed += Constant.PLAYER_SIDE_MOMENTUM;
 		}
+		
+	}
 
+	private void ifPlayerIsJumpingAddGravity(int delta) {
 		if (isJumping == true) {
 			verticalSpeed += (Constant.GRAVITY * delta);
 		}
+		
+	}
 
+	private void updateLocationWithCurrentVelocity() {
 		xLocation += horizontalSpeed;
 		yLocation += verticalSpeed;
-
+		
 	}
-	
+
+	private void checkIfPlayerIsJumping() {
+		if (mapCollisionChecker.isNotBlockedInAnyDirection(new Point(xLocation,yLocation), horizontalSpeed,verticalSpeed))
+			isJumping = true;
+		else {
+			isJumping = false;
+			verticalSpeed = 0;
+			calculateHorizontalFriction();
+		}
+		
+	}
+
 	private boolean horizontalSpeedIsNotTooFastToTheRight() {
 		if (horizontalSpeed<Constant.PLAYER_HORIZONTAL_TERMINAL_VELOCITY)
 			return true;
