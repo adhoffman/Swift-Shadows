@@ -1,11 +1,10 @@
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Player {
 
-	private Image player;
+
 
 	private int xLocation;
 	private int yLocation;
@@ -14,13 +13,15 @@ public class Player {
 	private boolean isJumping;
 
 	private PlayerMapCollisionChecker mapCollisionChecker;
+	private PlayerAnimationComponent animationComponent;
 
 	public Player(TiledMap tiledMap, StartingPoint startingPoint)
 			throws SlickException {
 
 		mapCollisionChecker = new PlayerMapCollisionChecker(tiledMap,
 				startingPoint);
-		player = new Image("res/sneak.png");
+		animationComponent=new PlayerAnimationComponent();
+		
 
 		xLocation = startingPoint.getX();
 		yLocation = startingPoint.getY();
@@ -37,11 +38,15 @@ public class Player {
 	}
 
 	public void render() {
-		player.draw(xLocation, yLocation);
+		animationComponent.render();
 	}
+
 
 	public void update(Input input, int delta) {
 
+		animationComponent.updateAnimtaionLocation(xLocation, yLocation);
+		animationComponent.updateHorizontalSpeedForJumping(horizontalSpeed);
+		animationComponent.updateIsJumpingForAnimations(isJumping);
 		checkIfPlayerIsJumping();
 		checkInputFromKeyboard(input);
 		ifPlayerIsJumpingAddGravity(delta);
@@ -49,6 +54,7 @@ public class Player {
 		
 
 	}
+
 	
 	private void checkInputFromKeyboard(Input input) {
 		if (ifUpKeyDown(input)) {
