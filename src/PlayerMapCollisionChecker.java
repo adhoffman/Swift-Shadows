@@ -45,6 +45,7 @@ public class PlayerMapCollisionChecker {
 
 	}
 	
+
 	public boolean isNotBlockedInAnyDirection(Point point, float deltaX, float deltaY){
 		if(!isBlockedRight(point, deltaX) && !isBlockedLeft(point, deltaX) && !isBlockedDown(point, deltaY) && !isBlockedUp(point, deltaY))
 			return true;
@@ -93,7 +94,7 @@ public class PlayerMapCollisionChecker {
 	private boolean checkMidpointThreeTop(Point point, float deltaY) {
 		int x=point.getX();
 		int y=point.getY();
-		int xBlock = (int) (x += 24) / Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += (24)) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y -= deltaY) / Constant.BLOCK_SIZE;
 		return blocked[xBlock][yBlock];
 	}
@@ -101,7 +102,7 @@ public class PlayerMapCollisionChecker {
 	private boolean checkMidpointTwoTop(Point point, float deltaY) {
 		int x=point.getX();
 		int y=point.getY();
-		int xBlock = (int) (x += 16) / Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += (16)) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y -= deltaY) /Constant.BLOCK_SIZE;
 		return blocked[xBlock][yBlock];
 	}
@@ -109,7 +110,7 @@ public class PlayerMapCollisionChecker {
 	private boolean checkMidpointOneTop(Point point, float deltaY) {
 		int x=point.getX();
 		int y=point.getY();
-		int xBlock = (int) (x += 8) / Constant.BLOCK_SIZE;
+		int xBlock = (int) (x += (8)) / Constant.BLOCK_SIZE;
 		int yBlock = (int) (y -= deltaY) / Constant.BLOCK_SIZE;
 		return blocked[xBlock][yBlock];
 	}

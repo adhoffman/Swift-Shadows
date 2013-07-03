@@ -4,8 +4,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Player {
 
-
-
+	
 	private int xLocation;
 	private int yLocation;
 	private float verticalSpeed;

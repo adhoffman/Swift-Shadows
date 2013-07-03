@@ -14,6 +14,7 @@ public class Constant {
 	public static final float GRAVITY=0.008f;
 	
 	public static final int BLOCK_SIZE =16;
+	public static final int BlOCK_CHECK_SIZE=14;
 	public static final int PLAYER_REC_HEIGHT=44;
 	public static final int PLAYER_REC_WIDTH=28;
 }
